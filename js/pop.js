@@ -112,8 +112,16 @@ var POP = {
 		POP.render();
 	},
 	resize:function () {
-		POP.currentHeight = window.innerHeight;
-		POP.currentWidth = POP.currentHeight * POP.ratio;
+		// combine width with height
+		var x = window.innerWidth;
+		var y = window.innerHeight;
+		if((x/y) < POP.ratio){
+			POP.currentWidth = x;
+			POP.currentHeight = x / POP.ratio;
+		} else {
+			POP.currentHeight = y;
+			POP.currentWidth = y * POP.ratio;
+		}
 		if (POP.android || POP.ios) {
 			document.body.height = (window.innerHeight + 50) + 'px';
 		}
